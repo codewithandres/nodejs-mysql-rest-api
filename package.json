@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-mysql-rest-api",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.3"
+  },
+  "scripts": {
+    "start": "bun run --watch src/index.ts",
+    "build": "bun build --minify src/index.ts",
+    "test": "bun test"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/node": "^24.0.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
+}
