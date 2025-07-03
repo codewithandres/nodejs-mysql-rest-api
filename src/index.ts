@@ -1,30 +1,10 @@
-import express, { type Request, type Response } from 'express';
-import { pool } from './db';
-import type { RowDataPacket } from 'mysql2';
+import express from 'express';
+import employeeRoute from './routes/employee.routes';
 
 const app = express();
 
 // Routes
-app.get('/ping', async (req, res) => {
-	const [rows] = await pool.query<RowDataPacket[]>('SELECT 1 + 1 AS TEST;');
-	res.json({ message: 'resultado', result: rows });
-});
-
-app.get('/employes', (req: Request, res: Response) => {
-	res.send('Obteniendo empleados..');
-});
-
-app.post('/employes', (req: Request, res: Response) => {
-	res.send('Creando empleados');
-});
-
-app.put('/employes', (req, res) => {
-	res.send('Actulaizar empleado..');
-});
-
-app.delete('/employes', (req, res) => {
-	res.send('Eliminando empleado..');
-});
+app.use('/api', employeeRoute);
 
 app.listen(3000);
 
