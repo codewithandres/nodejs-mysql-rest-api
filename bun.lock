@@ -4,7 +4,6 @@
     "": {
       "name": "nodejs-mysql-rest-api",
       "dependencies": {
-        "@arcjet/bun": "^1.0.0-beta.8",
         "@arcjet/inspect": "^1.0.0-beta.8",
         "@arcjet/node": "^1.0.0-beta.8",
         "@types/node": "^24.0.10",
@@ -27,8 +26,6 @@
     "@arcjet/analyze-wasm": ["@arcjet/analyze-wasm@1.0.0-beta.8", "", {}, "sha512-vDlKVHXJh045ASH/pRGH1j5vmPe2tfSbnBCFAc5uWQUG22XWZokd+83puTjqaFAj9SxpgQM/r/ql9SId9c3WmQ=="],
 
     "@arcjet/body": ["@arcjet/body@1.0.0-beta.8", "", {}, "sha512-DwBmsW6PvJonzKwlwOkz7cK2ceA/rt6BmZqQfzVjPCwx2TwASsdubNxpNY01njWVIhU3nltztrxlneTyT8INeA=="],
-
-    "@arcjet/bun": ["@arcjet/bun@1.0.0-beta.8", "", { "dependencies": { "@arcjet/env": "1.0.0-beta.8", "@arcjet/headers": "1.0.0-beta.8", "@arcjet/ip": "1.0.0-beta.8", "@arcjet/logger": "1.0.0-beta.8", "@arcjet/protocol": "1.0.0-beta.8", "@arcjet/transport": "1.0.0-beta.8", "arcjet": "1.0.0-beta.8" } }, "sha512-edEWPu/u27qS67JaC/+BHRw8wN71bl7rVBN1zRPjLpBkdbtcrBnVyxeRcCEZtd/RE/sDfBBrRa9QVXy8qQhHdw=="],
 
     "@arcjet/cache": ["@arcjet/cache@1.0.0-beta.8", "", {}, "sha512-bVpoSYRiBtsOnXJNow5rnZbNcZ3p0yxui3GcSNJVp4eIlj/6srO4jobAqzAUW8ABGpsu75Ft3t7aaB0Y6HxKzg=="],
 

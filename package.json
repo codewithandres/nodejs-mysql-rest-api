@@ -1,27 +1,27 @@
 {
-  "name": "nodejs-mysql-rest-api",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/express": "^5.0.3"
-  },
-  "scripts": {
-    "start": "bun run --watch src/index.ts",
-    "build": "bun build --minify src/index.ts",
-    "test": "bun test"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@arcjet/bun": "^1.0.0-beta.8",
-    "@arcjet/inspect": "^1.0.0-beta.8",
-    "@arcjet/node": "^1.0.0-beta.8",
-    "@types/node": "^24.0.10",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.1",
-    "zod": "^3.25.73"
-  }
+	"name": "nodejs-mysql-rest-api",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/express": "^5.0.3"
+	},
+	"scripts": {
+		"dev": "bun run --watch src/index.ts",
+		"start": "bun run src/index.ts",
+		"build": "bun build --minify src/index.ts",
+		"test": "bun test"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@arcjet/inspect": "^1.0.0-beta.8",
+		"@arcjet/node": "^1.0.0-beta.8",
+		"@types/node": "^24.0.10",
+		"express": "^5.1.0",
+		"mysql2": "^3.14.1",
+		"zod": "^3.25.73"
+	}
 }
