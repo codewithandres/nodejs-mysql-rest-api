@@ -18,7 +18,7 @@ router.get('/employee/:id', getEmployee);
 
 router.post('/employee', createEmployee);
 
-router.put('/employee/:id', updateEmploye);
+router.patch('/employee/:id', updateEmploye);
 
 router.delete('/employee/:id', deleteEmployee);
 
