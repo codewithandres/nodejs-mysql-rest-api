@@ -1,5 +1,7 @@
 import express, { type Application } from 'express';
 import employeeRoutes from './routes/employee.routes';
+import './config/index';
+import { PORT } from './config/index';
 
 const app: Application = express();
 
@@ -14,6 +16,4 @@ app.use((req, res, nex) => {
 	nex();
 });
 
-app.listen(3000);
-
-console.log('Server is running on port 3000');
+app.listen(PORT);
