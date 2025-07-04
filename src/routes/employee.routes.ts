@@ -5,13 +5,16 @@ import {
 	createEmployee,
 	deleteEmployee,
 	getEmployee,
+	getEmployees,
 	updateEmploye,
 } from '../controllers/employee.controllers';
 
 const router = Router();
 
 // ? rutas y controladores
-router.get('/employes', getEmployee);
+router.get('/employes', getEmployees);
+
+router.get('/employes/:id', getEmployee);
 
 router.post('/employes', createEmployee);
 

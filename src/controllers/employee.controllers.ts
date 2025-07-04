@@ -2,8 +2,25 @@ import type { Request, Response } from 'express';
 import { pool } from '../db';
 import type { QueryResult, ResultSetHeader, RowDataPacket } from 'mysql2';
 
-export const getEmployee = (req: Request, res: Response) => {
-	res.send('Obteniendo empleados..');
+export const getEmployees = async (req: Request, res: Response) => {
+	const rows = await pool.query<RowDataPacket[]>('SELECT * FROM employee');
+	res.status(200).json({ sucsses: true, message: rows });
+};
+
+export const getEmployee = async (req: Request, res: Response) => {
+	const { id } = req.params;
+	console.log({ id });
+	const [rows] = await pool.query<RowDataPacket[]>(
+		'SELECT id, name, salary FROM employee WHERE id = ? ',
+		[id]
+	);
+
+	if (rows.length <= 0)
+		return res.status(404).json({ sucsses: false, message: 'Employee not found' });
+
+	console.log(rows.at(0));
+
+	res.status(200).json({ sucsses: true, message: rows.at(0) });
 };
 
 export const createEmployee = async (req: Request, res: Response) => {
