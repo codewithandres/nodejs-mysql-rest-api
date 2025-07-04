@@ -1,6 +1,4 @@
 import { Router } from 'express';
-
-//?impottaciones de controladores
 import {
 	createEmployee,
 	deleteEmployee,
@@ -9,17 +7,21 @@ import {
 	updateEmploye,
 } from '../controllers/employee.controllers';
 
-const router = Router();
+//?importaciones de controladores
+import { validate } from '../middleware/validation';
+import { createEmployeeSchema, updateEmployeeSchema } from '../schemas/employee.schema';
+
+const routerEmployee = Router();
 
 // ? rutas y controladores
-router.get('/employees', getEmployees);
+routerEmployee.get('/employees', getEmployees);
 
-router.get('/employee/:id', getEmployee);
+routerEmployee.get('/employee/:id', getEmployee);
 
-router.post('/employee', createEmployee);
+routerEmployee.post('/employee', validate(createEmployeeSchema), createEmployee);
 
-router.patch('/employee/:id', updateEmploye);
+routerEmployee.patch('/employee/:id', validate(updateEmployeeSchema), updateEmploye);
 
-router.delete('/employee/:id', deleteEmployee);
+routerEmployee.delete('/employee/:id', deleteEmployee);
 
-export default router;
+export default routerEmployee;

@@ -1,18 +1,19 @@
 import type { Request, Response } from 'express';
-import { pool } from '../db';
-import type { ResultSetHeader, RowDataPacket } from 'mysql2';
 
-export const getEmployees = async (req: Request, res: Response) => {
+import type { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import { pool } from '../db';
+
+export const getEmployees = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM employee');
 		res.status(200).json({ success: true, data: rows });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ success: false, message: 'Internal Server Error' });
+		res.status(500).json({ success: false, message: 'Internal Server Error' });
 	}
 };
 
-export const getEmployee = async (req: Request, res: Response) => {
+export const getEmployee = async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params;
 	try {
 		const [rows] = await pool.query<RowDataPacket[]>(
@@ -20,17 +21,18 @@ export const getEmployee = async (req: Request, res: Response) => {
 			[id]
 		);
 
-		if (rows.length <= 0)
-			return res.status(404).json({ sucsses: false, message: 'Employee not found' });
+		if (rows.length <= 0) {
+			res.status(404).json({ sucsses: false, message: 'Employee not found' });
+		}
 
 		res.status(200).json({ sucsses: true, message: rows.at(0) });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ sucsses: false, message: 'Internal Server Error' });
+		res.status(500).json({ sucsses: false, message: 'Internal Server Error' });
 	}
 };
 
-export const createEmployee = async (req: Request, res: Response) => {
+export const createEmployee = async (req: Request, res: Response): Promise<void> => {
 	const { name, salary } = req.body;
 	try {
 		const [rows] = await pool.query<ResultSetHeader>(
@@ -43,11 +45,11 @@ export const createEmployee = async (req: Request, res: Response) => {
 			.json({ sucsses: true, message: { id: rows?.insertId, name, salary } });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ sucsses: false, message: 'Internal server Error' });
+		res.status(500).json({ sucsses: false, message: 'Internal server Error' });
 	}
 };
 
-export const updateEmploye = async (req: Request, res: Response) => {
+export const updateEmploye = async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params;
 	const { name, salary } = req.body;
 	try {
@@ -56,8 +58,10 @@ export const updateEmploye = async (req: Request, res: Response) => {
 			[name, salary, id]
 		);
 
-		if (rows.affectedRows <= 0)
-			return res.status(404).json({ success: false, message: 'Employee not found' });
+		if (rows.affectedRows <= 0) {
+			res.status(404).json({ success: false, message: 'Employee not found' });
+		}
+
 		// ? BUSCAR EL EMPLEADO ACTUALIZADO MEDIANTE EL ID DEL EMPLEADO
 		const [result] = await pool.query<RowDataPacket[]>(
 			'SELECT id, name, salary  FROM  employee WHERE id = ?',
@@ -67,11 +71,11 @@ export const updateEmploye = async (req: Request, res: Response) => {
 		res.status(200).json({ success: true, message: result.at(0) });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ success: false, message: 'Internal Server Error' });
+		res.status(500).json({ success: false, message: 'Internal Server Error' });
 	}
 };
 
-export const deleteEmployee = async (req: Request, res: Response) => {
+export const deleteEmployee = async (req: Request, res: Response): Promise<void> => {
 	const { id } = req.params;
 	try {
 		// ? consulta para actualizar un empleado
@@ -80,12 +84,13 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 			[id]
 		);
 
-		if (rows.affectedRows <= 0)
+		if (rows.affectedRows <= 0) {
 			res.status(404).json({ success: false, message: 'Employee not found' });
+		}
 
 		res.status(200).json({ success: true, message: 'delete employee' });
 	} catch (error) {
 		console.log(error);
-		return res.status(500).json({ success: false, message: 'Internal Server Error' });
+		res.status(500).json({ success: false, message: 'Internal Server Error' });
 	}
 };

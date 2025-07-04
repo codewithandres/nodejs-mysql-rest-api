@@ -2,18 +2,23 @@ import express, { type Application } from 'express';
 import employeeRoutes from './routes/employee.routes';
 import './config/index';
 import { PORT } from './config/index';
+import { arcjetMiddleware } from './middleware/arcjet';
+import routerEmployee from './routes/employee.routes';
 
-const app: Application = express();
+const app = express();
 
 app.use(express.json());
-// Routes
-app.use('/api', employeeRoutes);
+// Arcjet protection
+app.use(arcjetMiddleware);
 
-app.use((req, res, nex) => {
+// Routes
+app.use('/api', routerEmployee);
+
+app.use((req, res, next) => {
 	res.status(404).json({
 		message: 'endpoint not found',
 	});
-	nex();
+	next();
 });
 
 app.listen(PORT);
