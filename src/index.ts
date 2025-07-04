@@ -3,6 +3,7 @@ import employeeRoute from './routes/employee.routes';
 
 const app = express();
 
+app.use(express.json());
 // Routes
 app.use('/api', employeeRoute);
 
