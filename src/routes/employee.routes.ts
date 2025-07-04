@@ -12,14 +12,14 @@ import {
 const router = Router();
 
 // ? rutas y controladores
-router.get('/employes', getEmployees);
+router.get('/employees', getEmployees);
 
-router.get('/employes/:id', getEmployee);
+router.get('/employee/:id', getEmployee);
 
-router.post('/employes', createEmployee);
+router.post('/employee', createEmployee);
 
-router.put('/employes', updateEmploye);
+router.put('/employee/:id', updateEmploye);
 
-router.delete('/employes', deleteEmployee);
+router.delete('/employee/:id', deleteEmployee);
 
 export default router;
