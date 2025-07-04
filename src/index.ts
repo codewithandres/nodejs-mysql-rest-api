@@ -1,11 +1,18 @@
-import express from 'express';
-import employeeRoute from './routes/employee.routes';
+import express, { type Application } from 'express';
+import employeeRoutes from './routes/employee.routes';
 
-const app = express();
+const app: Application = express();
 
 app.use(express.json());
 // Routes
-app.use('/api', employeeRoute);
+app.use('/api', employeeRoutes);
+
+app.use((req, res, nex) => {
+	res.status(404).json({
+		message: 'endpoint not found',
+	});
+	nex();
+});
 
 app.listen(3000);
 

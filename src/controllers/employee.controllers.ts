@@ -4,8 +4,8 @@ import type { ResultSetHeader, RowDataPacket } from 'mysql2';
 
 export const getEmployees = async (req: Request, res: Response) => {
 	try {
-		const rows = await pool.query<RowDataPacket[]>('SELECT * FROM employee');
-		res.status(200).json({ sucsses: true, message: rows.at(0) });
+		const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM employee');
+		res.status(200).json({ success: true, data: rows });
 	} catch (error) {
 		console.log(error);
 		return res.status(500).json({ success: false, message: 'Internal Server Error' });
