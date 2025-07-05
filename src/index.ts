@@ -33,9 +33,9 @@ app.get('/api/setup', async (req, res) => {
 app.get('/api/insert', async (req, res) => {
 	try {
 		await pool.query(`INSERT INTO employee (name, salary) VALUES 
-('John Doe', 50000),
-('Jane Smith', 60000),
-('Bob Johnson', 45000);
+				('John Doe', 50000),
+				('Jane Smith', 60000),
+				('Bob Johnson', 45000);
 		)`);
 
 		res.json({ success: true, message: 'Datos insertados en la Tabla  exitosamente' });
