@@ -9,14 +9,15 @@ import authRouter from './routes/auth.routes';
 
 const app = express();
 
-// Arcjet protection
-app.use(arcjetMiddleware);
+// Configuración básica
+app.set('trust proxy', true);
+app.use(express.json());
 
-// ? ruta de autenticacion
-app.use('/api', authRouter);
+// Arcjet protection (opcional)
+// app.use(arcjetMiddleware);
 
 // Routes
-app.use(express.json());
+app.use('/api', authRouter);
 app.use('/api', routerEmployee);
 
 app.use((req, res, next) => {
