@@ -8,6 +8,18 @@
 		"jsx": "react-jsx",
 		"allowJs": true,
 
+		// Import alias
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"@/controllers/*": ["./src/controllers/*"],
+			"@/middleware/*": ["./src/middleware/*"],
+			"@/routes/*": ["./src/routes/*"],
+			"@/schemas/*": ["./src/schemas/*"],
+			"@/config/*": ["./src/config/*"],
+			"@/db": ["./src/db.ts"]
+		},
+
 		// Bundler mode
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
