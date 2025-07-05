@@ -11,9 +11,13 @@ import {
 import { validate } from '../middleware/validation';
 import { createEmployeeSchema, updateEmployeeSchema } from '../schemas/employee.schema';
 
+import { requireAuth } from '@/middleware/auth.middleware';
+
 const routerEmployee = Router();
 
 // ? rutas y controladores
+routerEmployee.use(requireAuth);
+
 routerEmployee.get('/employees', getEmployees);
 
 routerEmployee.get('/employee/:id', getEmployee);
